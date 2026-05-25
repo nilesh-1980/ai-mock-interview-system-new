@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
+
+.container{
+width:400px;
+margin:auto;
+margin-top:100px;
+background:white;
+padding:30px;
+border-radius:10px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:20px;
+background:blue;
+color:white;
+border:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Register</h2>
+
+<form th:action="@{/saveUser}" method="post" th:object="${user}">
+
+<input type="text" th:field="*{name}" placeholder="Enter Name">
+
+<input type="email" th:field="*{email}" placeholder="Enter Email">
+
+<input type="password" th:field="*{password}" placeholder="Enter Password">
+
+<select th:field="*{role}">
+<option value="USER">USER</option>
+<option value="ADMIN">ADMIN</option>
+</select>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:500px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+    color:#333;
+    margin-bottom:15px;
+}
+
+p{
+    color:#666;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:block;
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    text-decoration:none;
+    color:white;
+    border-radius:10px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.add-btn{
+    background:#28a745;
+}
+
+.add-btn:hover{
+    background:#1e7e34;
+    transform:scale(1.03);
+}
+
+.view-btn{
+    background:#17a2b8;
+}
+
+.view-btn:hover{
+    background:#117a8b;
+    transform:scale(1.03);
+}
+
+.logout-btn{
+    background:#ff4b5c;
+}
+
+.logout-btn:hover{
+    background:#d63031;
+    transform:scale(1.03);
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Admin Panel </h1>
+
+    <p>
+        Manage interview questions and monitor the system.
+    </p>
+
+    <a href="/admin/add-question" class="btn add-btn">
+        Add Questions
+    </a>
+
+    <a href="/admin/questions" class="btn view-btn">
+        View Questions
+    </a>
+
+    <a href="/logout" class="btn logout-btn">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Interview Result</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#141e30,#243b55);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    max-width:800px;
+    background:rgba(255,255,255,0.1);
+    padding:40px;
+    border-radius:25px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    color:white;
+}
+
+h1{
+    text-align:center;
+    color:#00ffd5;
+    margin-bottom:30px;
+    font-size:40px;
+}
+
+.feedback-box{
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+    line-height:1.9;
+    margin-bottom:35px;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.feedback-box pre{
+    white-space:pre-wrap;
+    word-wrap:break-word;
+    font-size:18px;
+    color:white;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    flex:1;
+    min-width:200px;
+    padding:16px;
+    border:none;
+    border-radius:15px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
+    text-align:center;
+}
+
+.next-btn{
+    background:#00ffd5;
+    color:black;
+}
+
+.dashboard-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.voice-btn{
+    background:#667eea;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    opacity:0.95;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 AI Interview Feedback</h1>
+
+    <div class="feedback-box">
+
+        <pre id="feedback"
+             th:text="${feedback}">
+        </pre>
+
+    </div>
+
+    <div class="buttons">
+
+        <!-- SPEAK FEEDBACK -->
+
+        <button class="btn voice-btn"
+                onclick="speakFeedback()">
+
+            🔊 Hear Feedback
+
+        </button>
+
+        <!-- NEXT QUESTION -->
+
+        <a th:href="${mode == 'voice'} 
+                     ? @{/user/voice-interview/{cat}(cat=${category})} 
+                     : @{/user/interview/{cat}(cat=${category})}"
+           class="btn next-btn">
+
+            Next Question
+
+        </a>
+
+        <!-- DASHBOARD -->
+
+        <a href="/dashboard"
+           class="btn dashboard-btn">
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function speakFeedback(){
+
+    const feedback =
+    document.getElementById("feedback").innerText;
+
+    const speech =
+    new SpeechSynthesisUtterance(feedback);
+
+    speech.lang = "en-US";
+
+    speech.rate = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+</script>
+
+</body>
+</html>

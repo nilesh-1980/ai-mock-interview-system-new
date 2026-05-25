@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>All Questions</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+h2{
+    color:#333;
+    font-size:32px;
+}
+
+.dashboard-btn{
+    text-decoration:none;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.dashboard-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+thead{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+}
+
+th{
+    padding:18px;
+    text-align:left;
+    font-size:18px;
+}
+
+td{
+    padding:18px;
+    border-bottom:1px solid #ddd;
+    font-size:16px;
+}
+
+tr:hover{
+    background:#f5f7ff;
+}
+
+.id-box{
+    font-weight:bold;
+    color:#667eea;
+}
+
+.category-box{
+    background:#eef2ff;
+    padding:8px 14px;
+    border-radius:20px;
+    display:inline-block;
+    font-weight:bold;
+    color:#4f46e5;
+}
+
+.question-box{
+    color:#444;
+    line-height:1.6;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+
+        <h2>Interview Questions</h2>
+
+        <a href="/dashboard" class="dashboard-btn">
+            ← Go To Dashboard
+        </a>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Question</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="q : ${questions}">
+
+                <td>
+                    <span class="id-box" th:text="${q.id}"></span>
+                </td>
+
+                <td>
+                    <span class="category-box"
+                          th:text="${q.category}">
+                    </span>
+                </td>
+
+                <td>
+                    <span class="question-box"
+                          th:text="${q.questionText}">
+                    </span>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
+```

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>AI Mock Interview</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#141e30,#243b55);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    max-width:750px;
+    background:rgba(255,255,255,0.1);
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    color:white;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#00ffd5;
+    font-size:40px;
+}
+
+.question-box{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.question-box h3{
+    font-size:24px;
+    line-height:1.6;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    outline:none;
+    resize:none;
+    font-size:17px;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:25px;
+    border:none;
+    border-radius:15px;
+    background:#00ffd5;
+    color:black;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    background:white;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Mock Interview</h1>
+
+    <div class="question-box">
+
+        <h3 th:text="${question != null ? question.questionText : 'No Question Found'}"></h3>
+
+    </div>
+
+    <form th:action="@{/user/submit-answer}" method="post">
+
+        <!-- QUESTION -->
+
+        <input 
+            type="hidden"
+            name="question"
+            th:value="${question.questionText}"
+        >
+
+        <!-- CATEGORY -->
+
+        <input
+            type="hidden"
+            name="category"
+            th:value="${category}"
+        >
+
+        <!-- MODE -->
+
+        <input 
+            type="hidden"
+            name="mode"
+            value="text"
+        >
+
+        <!-- ANSWER -->
+
+        <textarea 
+            name="answer"
+            placeholder="Write your answer here..."
+            required>
+        </textarea>
+
+        <button type="submit">
+            Submit Answer
+        </button>
+
+    </form>
+
+    <a href="/dashboard" class="back-btn">
+        ← Back To Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
